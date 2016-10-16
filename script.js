@@ -44,5 +44,19 @@ myApp.controller('myCtrl', function($scope){
             vm.customerCharges.total= subTotal + tipTotal;
             vm.updateEarnings(tipTotal);
         }
+        vm.fullReset = function(){
+            vm.reset();
+            vm.customerCharges = {
+                subtotal: 0,
+                tip: 0,
+                total: 0
+            }
+            vm.earningsData = {
+                tipTotal: 0,
+                mealCount: 0,
+                avgTipPerMeal: 0 
+            }      
+            
+        }
         
 });

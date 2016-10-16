@@ -39,3 +39,10 @@ form input{
     border: 4px black solid;
     padding: 10px;
 }
+.resetBtn {
+    width: 100px;
+    height: 50px;
+    color: red;
+    display: block;
+    margin: 0 auto;
+}
