@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script data-require="angular.js@1.3.11" data-semver="1.3.11" src="https://code.angularjs.org/1.3.11/angular.js"></script>
+        <script src="https://code.angularjs.org/1.5.8/angular-messages.js"></script>
+        <link href="style.css" rel="stylesheet" />
+        <script src="script.js"></script>
+    </head>
+
+    <body ng-app="myApp" ng-controller="myCtrl as vm">
+         <div class="fullContainer">
+            <div class="mealDetailContainer">
+                <h1>Enter Meal Details</h1>
+                 <form name="mealDetailForm" ng-submit="vm.submit()">
+                     <label>Meal Price:</label><input type="text" name="baseMealPrice" ng-model="data.baseMealPrice" required ng-pattern="/^\d+$/">
+                     
+                     <label>Tax Rate: </label><input type="text" name="taxRatePercent" ng-model="data.taxRate" required ng-pattern="/^\d+$/">
+                    
+                     <label>Tip: </label><input type="text" name="tipPercent" ng-model="data.tipPercent" required ng-pattern="/^\d+$/">
+                     
+                     <input type="submit" value="Submit" class="btn submitBtn">
+                     <input type="button" value="Cancel" class="btn cancelBtn" ng-click="vm.reset()">
+                 </form>
+            </div>
+            <div class="dataContainer">
+                 <div class="customerChargesContainer">
+                    <h1>Customer Charges</h1>
+                     <p>Subtotal: {{vm.customerCharges.subtotal | currency}}</p>
+                     <p>Tip: {{vm.customerCharges.tip | currency}}</p>
+                     <hr>
+                     <p>Total: {{vm.customerCharges.total | currency}}</p>             
+                 </div>
+                 <div class="myEarningsContainer">
+                    <h1>My Earnings Info</h1>
+                     <p>Tip Total: {{vm.earningsData.tipTotal | currency}}</p>
+                     <p>Meal Count: {{vm.earningsData.mealCount}}</p>
+                     <p>Average Tip Per Meal: {{vm.earningsData.avgTipPerMeal | currency}}</p>
+                 </div>
+             </div>
+         </div>
+    </body>
+
+</html>

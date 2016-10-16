@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.fullContainer {
+    width: 60em;
+    height: 300px;
+    margin: 100px auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+form input{
+    display: block;
+}
+
+.btn {
+    display: inline;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+}
+.mealDetailContainer{
+    padding: 10px;
+    border: 4px black solid;
+
+}
+
+.dataContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+}
+.dataContainer > div {
+    border: 4px black solid;
+    padding: 10px;
+}
