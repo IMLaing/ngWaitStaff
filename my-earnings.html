@@ -1,12 +1,11 @@
 <div class="fullContainer">
-    <div class="mealDetailContainer">
-        <div class="dataContainer">
-            <div class="myEarningsContainer">
-                <h1>My Earnings Info</h1>
-                <p>Tip Total: {{tipTotal | currency}}</p>
-                <p>Meal Count: {{mealCount}}</p>
-                <p>Average Tip Per Meal: {{avgTipPerMeal | currency}}</p>
-            </div>
+    <div class="dataContainer">
+        <div class="myEarningsContainer">
+            <h1>My Earnings Info</h1>
+            <p>Tip Total: {{tipTotal | currency}}</p>
+            <p>Meal Count: {{mealCount}}</p>
+            <p>Average Tip Per Meal: {{avgTipPerMeal | currency}}</p>
         </div>
+        <button ng-click="vm.fullReset()" class="resetBtn btn">Reset All</button>
     </div>
 </div>
