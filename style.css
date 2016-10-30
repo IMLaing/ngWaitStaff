@@ -9,10 +9,11 @@
     height: 300px;
     margin: 100px auto;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-form input{
+form input {
     display: block;
 }
 
@@ -21,21 +22,64 @@ form input{
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px black;
 }
-.mealDetailContainer{
-    padding: 10px;
-    border: 4px black solid;
 
+.mealDetailContainer {
+    padding: 10px;
+    box-shadow: 2px 2px 4px black;
+    padding: 20px;
 }
 
 .dataContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-   
 }
+
 .dataContainer > div {
-    border: 4px black solid;
-    padding: 10px;
+    box-shadow: 2px 2px 4px black;
+    padding: 20px;
+    background: lightgreen;
+}
+
+.resetBtn {
+    width: 100px;
+    height: 50px;
+    color: red;
+    display: block;
+    margin: 20px auto;
+}
+
+.animate-view-container {
+    position: relative;
+    min-height: 100%;
+}
+
+.animate-view.ng-enter,
+.animate-view.ng-leave {
+    transition: 1s linear all;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #eee;
+}
+
+.animate-view.ng-enter {
+    opacity: 0;
+    z-index: 100;
+}
+
+.animate-view.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.animate-view.ng-leave {
+    opacity: 1;
+    z-index: 99;
+}
+
+.animate-view.ng-leave.ng-leave-active {
+    opacity: 0;
 }
