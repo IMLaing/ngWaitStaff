@@ -11,12 +11,13 @@
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl as vm">
+    <h1>Welcome to the Waitstaff Calculator</h1>
+    <div class="viewLinks">
+        <a ng-href="#/">Home</a>
+        <a ng-href="#/new-meal">New Meal</a>
+        <a ng-href="#/my-earnings">My Earnings</a>
+    </div>
 
-    <pre>{{vm.calcFactory | json}}</pre>
-
-    <a ng-href="#/">Home</a>
-    <a ng-href="#/new-meal">New Meal</a>
-    <a ng-href="#/my-earnings">My Earnings</a>
     <div ng-view></div>
 
     <button ng-click="vm.fullReset()" class="resetBtn">Reset All</button>

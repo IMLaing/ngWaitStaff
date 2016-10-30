@@ -18,41 +18,36 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-/* Example 
-myApp.factory('myFactory', function () {
-    var self = this;
-    self.total = 0;
-    self.calculateTotal = function () {
-        self.total += 100;
-    }
-    return self;
-})
-Don't forget to add in , myFactory and
-    vm.myFactory = myFactory;
+myApp.run(function ($rootScope) {
+    $rootScope.subtotal = 0;
+    $rootScope.tip = 0;
+    $rootScope.total = 0;
+    $rootScope.mealCount = 0;
+    $rootScope.tipTotal = 0;
+    $rootScope.avgTipPerMeal = 0;
+});
 
-*/
-
-myApp.factory('calcFactory', function () {
-    var self = this;
-    //total earned
-    self.tipTotal = 0;
-    self.avgTipPerMeal = 0;
-    self.mealCount = 0;
-    //customer Charges
-    self.subtotal = 0;
-    self.tip = 0;
-    self.total = 0;
-
-    self.updateEarnings = function () {
-        self.mealCount++;
-    }
-    return self;
-})
-
-myApp.controller('myCtrl', function ($scope, $rootScope, calcFactory) {
+myApp.controller('myCtrl', function ($scope, $rootScope) {
     var vm = this;
-    vm.calcFactory = calcFactory;
-
+    vm.earningsData = {
+        tipTotal: 0,
+        mealCount: 0,
+        avgTipPerMeal: 0
+    }
+    vm.reset = function () {
+        $scope.data.baseMealPrice = '';
+        $scope.data.taxRate = '';
+        $scope.data.tipPercent = '';
+    }
+    vm.submit = function () {
+        if ($scope.mealDetailForm.$valid) {
+            console.log('form is valid');
+            vm.sendMealDetail();
+            vm.reset();
+        } else {
+            console.log('form is not valid');
+        }
+    }
     vm.sendMealDetail = function () {
         var basePrice = $scope.data.baseMealPrice;
         var taxPercent = $scope.data.taxRate * .01;
@@ -60,26 +55,15 @@ myApp.controller('myCtrl', function ($scope, $rootScope, calcFactory) {
         var totalTax = $scope.data.baseMealPrice * taxPercent;
         var subTotal = parseFloat(basePrice) + parseFloat(totalTax);
         var tipTotal = subTotal * tipPercent;
-        self.subtotal = subTotal;
-        self.tip = tipTotal;
-        self.total = subTotal + tipTotal;
+        $rootScope.subtotal = subTotal;
+        $rootScope.tip = tipTotal;
+        $rootScope.total = subTotal + tipTotal;
+        vm.updateEarnings(tipTotal);
     }
-
-    vm.reset = function () {
-        $scope.data.baseMealPrice = '';
-        $scope.data.taxRate = '';
-        $scope.data.tipPercent = '';
-    }
-
-    vm.submit = function () {
-        if ($scope.mealDetailForm.$valid) {
-            vm.calcFactory.updateEarnings();
-            console.log('form is valid');
-            vm.sendMealDetail();
-            vm.reset();
-        } else {
-            console.log('form is not valid');
-        }
+    vm.updateEarnings = function (tipTotal) {
+        $rootScope.mealCount++;
+        $rootScope.tipTotal += tipTotal;
+        $rootScope.avgTipPerMeal = $rootScope.tipTotal / $rootScope.mealCount;
     }
 
     vm.fullReset = function () {
@@ -94,6 +78,7 @@ myApp.controller('myCtrl', function ($scope, $rootScope, calcFactory) {
             mealCount: 0,
             avgTipPerMeal: 0
         }
+
     }
 
 });
