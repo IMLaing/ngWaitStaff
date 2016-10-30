@@ -1,0 +1,28 @@
+<div class="fullContainer">
+    <div class="mealDetailContainer">
+        <h1>Enter Meal Details</h1>
+        <form name="mealDetailForm" ng-submit="vm.submit()">
+            <label>Meal Price:</label>
+            <input type="text" name="baseMealPrice" ng-model="data.baseMealPrice" required ng-pattern="/^\d+$/">
+
+            <label>Tax Rate: </label>
+            <input type="text" name="taxRatePercent" ng-model="data.taxRate" required ng-pattern="/^\d+$/">
+
+            <label>Tip: </label>
+            <input type="text" name="tipPercent" ng-model="data.tipPercent" required ng-pattern="/^\d+$/">
+
+            <input type="submit" value="Submit" class="btn submitBtn">
+            <input type="button" value="Cancel" class="btn cancelBtn" ng-click="vm.reset()">
+        </form>
+    </div>
+    <div class="dataContainer">
+        <div class="customerChargesContainer">
+            <h1>Customer Charges</h1>
+            <p>Subtotal: {{vm.customerCharges.subtotal | currency}}</p>
+            <p>Tip: {{vm.customerCharges.tip | currency}}</p>
+            <hr>
+            <p>Total: {{vm.customerCharges.total | currency}}</p>
+        </div>
+    </div>
+
+</div>
