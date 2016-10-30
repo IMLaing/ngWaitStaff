@@ -4,6 +4,20 @@
     padding: 0;
 }
 
+body {
+    width: 60em;
+    margin: 10px auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.viewLinks {
+    margin: 10px auto;
+    text-align: center;
+}
+
 .fullContainer {
     width: 60em;
     height: 300px;
